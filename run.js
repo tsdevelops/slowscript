@@ -56,4 +56,13 @@ Copyright © 2016 TSDevelops.
       }
     };
   };
+  
+  var addDefaultsTo = function(context) {
+    
+  };
+  
+  var runStatement = function(statement) {
+    var context = new Context();
+    addDefaultsTo(context);
+  };
 })();
