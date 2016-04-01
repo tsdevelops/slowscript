@@ -34,7 +34,7 @@ Copyright © 2016 TSDevelops.
         vals.push(val);
         return exit();
       }
-      return exit(true, 'DeclarationError: context already contains "' + key + '" as a key.');
+      return exit(true, 'NameError: context already contains "' + key + '" as a key.');
     };
     this.update = function(key, val) {
       var index = keys.indexOf(key);
@@ -43,7 +43,16 @@ Copyright © 2016 TSDevelops.
         return exit();
       }
       else {
-        return exit(true, 'DeclarationError: context does not contain "' + key + '" as a key.');
+        return exit(true, 'NameError: context does not contain "' + key + '" as a key.');
+      }
+    };
+    this.get = function(key) {
+      var index = keys.indexOf(key);
+      if (index !== -1) {
+        return exit(false, vals[index]);
+      }
+      else {
+        return exit(true, 'NameError: context does not contain "' + key + '" as a key.');
       }
     };
   };
