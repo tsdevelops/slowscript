@@ -27,14 +27,24 @@ Copyright © 2016 TSDevelops.
     
     this.add = function(key, val) {
       if (keys.length !== vals.length) {
-        return exit('InternalError: context keys and vals lengths are not identical.');
+        return exit(true, 'InternalError: context keys and vals lengths are not identical.');
       }
       if (keys.indexOf(val) === -1) {
         keys.push(key);
         vals.push(val);
         return exit();
       }
-      return exit('DeclarationError: context already contains "' + key + '" as a key.');
+      return exit(true, 'DeclarationError: context already contains "' + key + '" as a key.');
+    };
+    this.update = function(key, val) {
+      var index = keys.indexOf(key);
+      if (index !== -1) {
+        vals[index] = val;
+        return exit();
+      }
+      else {
+        return exit(true, 'DeclarationError: context does not contain "' + key + '" as a key.');
+      }
     };
   };
 })();
