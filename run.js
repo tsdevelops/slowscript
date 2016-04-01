@@ -57,8 +57,29 @@ Copyright © 2016 TSDevelops.
     };
   };
   
+  var value = function(type, val) {
+    return {
+      type: type,
+      val:  val
+    };
+  };
+  
+  var native = function(func) {
+    return value('native', func);
+  };
+  
   var addDefaultsTo = function(context) {
-    
+    context.add('+', native(function(params) {
+      if (params[0].type === 'integer') {
+        var total = 0;
+        for (var i = 0; i < params.length; i++) {
+          total += params[i].val;
+        }
+        if (typeof total != 'number') {
+          // TODO
+        }
+      }
+    });
   };
   
   var runStatement = function(statement) {
